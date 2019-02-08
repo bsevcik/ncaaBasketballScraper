@@ -1,0 +1,83 @@
+.game {
+    border: 1px solid black;
+    border-radius: 8px;
+    width: 200px;
+    display: block;
+    padding: 10px;
+    margin: 10px;
+    height: 70px;
+}
+.awayTeamScore, .homeTeamScore {
+    /* align-items: flex-end; */
+    justify-self: flex-end; 
+}
+.awayTeam, .homeTeam {
+    align-self: flex-end;
+}
+.gameStatus {
+    /* justify-self: center; */
+    float: right;
+    height: 25px;
+    padding: 2px 0 0 0;
+    margin: -2px 0 0 5px;
+    color: #434445;
+    line-height: 1rem;
+    font: 0.75rem "Geogrotesque","Rockwell",Georgia,Times,"Times New Roman",serif;
+    text-transform: uppercase;
+}
+/* <div class="gameStatus">final</div>
+<div class="awayTeam">C CONN</div>
+<div class="awayTeamScore">85</div>
+<div class="homeTeam">STFRPA</div>
+<div class="homeTeamScore">90</div> */
+/* 
+.gamePod .gamePod-game-teams li {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    vertical-align: top;
+}
+.gamePod .gamePod-game-teams {
+    display: block;
+    clear: both;
+    list-style-type: none;
+    margin: 13px 0 2px 0;
+    padding: 0;
+}
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.gamePod, .gamePod a.gamePod-link {
+    color: #000;
+}
+a {
+    text-decoration: none;
+    color: #0A6FAC;
+}
+
+.gamePod, .gamePod a.gamePod-link {
+    color: #000;
+}
+body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+html {
+    font-size: 16px;
+    line-height: 24px;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #000;
+}
+html {
+    line-height: 1.15;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+} */
