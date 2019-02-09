@@ -1,15 +1,26 @@
 var data;
 var arrData;
 
+// Found a way around CORS errors, so now I don't need to scrape the node file. Will leave it in here in case I want to switch back
 // scrapeNcaaNode.js grabs the data and stores it on my site
-// this file takes the data I already put into data/index.html (my site) and pushes the data onto a webpage 
-$.getJSON("data/index.html", function (data) {
+// this script takes the data I already put into data/index.html (scraped by scrapeNcaaNode.js) and pushes the data onto a webpage 
+//$.getJSON("data/index.html", function (data) {
+//    "use strict";
+//    window.data = data;
+//    window.arrData = Object.values(data.games);
+//    return data;
+//});
+
+
+// Bypassed CORS error, can get live score updates direct from NCAA using the script below
+$.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent('https://data.ncaa.com/casablanca/scoreboard/basketball-men/d1/2019/02/09/scoreboard.json') + '&callback=?',
+    function (data) {
     "use strict";
-    window.data = data;
-    window.arrData = Object.values(data.games);
+    window.data = data.contents;
+    window.arrData = Object.keys(data.contents.games).map((key) => [key, data.contents.games[key]]);
+    console.log(arrData);    
     return data;
 });
-
 
 // It takes a bit for the $.getJSON() to finish, so I pause 500ms before trying to output the data
 setTimeout(function listGames() {
@@ -27,4 +38,4 @@ setTimeout(function listGames() {
         $('body').append(fullGameInfo);
         // console.log(data.games[i].game.away.names.char6);
     }
-}, 500);
+}, 800);
