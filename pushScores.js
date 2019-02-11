@@ -1,6 +1,7 @@
 var data;
 var arrData;
 var ncaaUrl;
+
 // Found a way around CORS errors, so now I don't need to scrape the node file. Will leave it in here in case I want to switch back
 // scrapeNcaaNode.js grabs the data and stores it on my site
 // this script takes the data I already put into data/index.html (scraped by scrapeNcaaNode.js) and pushes the data onto a webpage 
@@ -43,20 +44,35 @@ $.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent(ncaaUrl) + '
     return data;
 });
 
-// It takes a bit for the $.getJSON() to finish, so I pause 500ms before trying to output the data
-setTimeout(function listGames() {
+// It takes a bit for the $.getJSON() to finish, so I pause 800ms before trying to output the data
+var listGames = setTimeout(function() {
     // var arrData = Object.values(data.games);
     "use strict";
     $('body').append(data.updated_at);
     console.log("starting listGames() function");
     for (var i=0; i < arrData.length; i++) {
+        var gameStart = data.games[i].game.startTime;
+        var gameState = data.games[i].game.gameState;
         var awayTeam = data.games[i].game.away.names.short;
         var awayScore = data.games[i].game.away.score;
         var homeTeam = data.games[i].game.home.names.short;
         var homeScore = data.games[i].game.home.score;
-        var gameState = data.games[i].game.gameState;
-        var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameState + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
-        $('body').append(fullGameInfo);
-        // console.log(data.games[i].game.away.names.char6);
+        var clock =  data.games[i].game.currentClock + " " + data.games[i].game.currentClock;
+        var homeWinner = data.games[i].game.home.winner;        
+        var awayWinner = data.games[i].game.home.winner;
+        if (data.games[i].game.gameState == "pre") {
+            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameStart + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
+            $('body').append(fullGameInfo);
+        }else {
+            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + clock + " " + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
+            $('body').append(fullGameInfo);
+            // console.log(data.games[i].game.away.names.char6);
+        }
+        if (homeWinner == true) {
+            console.log("home winner");
+        } else {
+            console.log("");
+        }
     }
 }, 800);
+listGames;
