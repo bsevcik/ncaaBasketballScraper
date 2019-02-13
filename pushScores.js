@@ -61,7 +61,7 @@ var listGames = setTimeout(function() {
         var homeWinner = data.games[i].game.home.winner;        
         var awayWinner = data.games[i].game.home.winner;
         if (data.games[i].game.gameState == "pre") {
-            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameStart + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
+            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameStart + "<br> " + awayTeam + '<div class="awayScore">' + awayScore + "</div><br> " + homeTeam + " " + homeScore + '</div>';
             $('body').append(fullGameInfo);
         }else {
             var fullGameInfo = '<div class="game" id="game' + [i] + '">' + clock + " " + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';

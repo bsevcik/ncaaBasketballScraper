@@ -2,17 +2,22 @@
     border: 1px solid black;
     border-radius: 8px;
     width: 200px;
-    display: block;
     padding: 10px;
     margin: 10px;
-    height: 70px;
+    min-height: 70px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
 }
-.awayTeamScore, .homeTeamScore {
-    /* align-items: flex-end; */
-    justify-self: flex-end; 
+
+ul, li {
+    list-style: none;
+    margin: 0 0 0 0;
+    padding: 0;
+    width: 100%;
 }
-.awayTeam, .homeTeam {
-    align-self: flex-end;
+hr {
+    margin: 2px 0 6px 0;
 }
 .gameStatus {
     /* justify-self: center; */
@@ -24,6 +29,28 @@
     line-height: 1rem;
     font: 0.75rem "Geogrotesque","Rockwell",Georgia,Times,"Times New Roman",serif;
     text-transform: uppercase;
+}
+.homeTeam li, .awayTeam li {
+/*    width: 45%;*/
+    display: inline-flex;
+}
+.awayTeamName, .homeTeamName {
+    justify-content: space-between;
+    width: 150px;
+    margin-right: auto;
+}
+.awayTeamScore, .homeTeamScore {
+    /* align-items: flex-end; */
+    justify-content: flex-end; 
+    
+/*    margin-left: auto;*/
+    text-align: right;
+}
+.noWrap {
+    flex-wrap: nowrap;
+}
+.Wrap {
+    flex-wrap: wrap;
 }
 /* <div class="gameStatus">final</div>
 <div class="awayTeam">C CONN</div>
