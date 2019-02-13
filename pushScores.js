@@ -57,16 +57,26 @@ var listGames = setTimeout(function() {
         var awayScore = data.games[i].game.away.score;
         var homeTeam = data.games[i].game.home.names.short;
         var homeScore = data.games[i].game.home.score;
-        var clock =  data.games[i].game.currentClock + " " + data.games[i].game.currentClock;
+        var period = data.games[i].game.currentPeriod
+        var clock =  data.games[i].game.contestClock
         var homeWinner = data.games[i].game.home.winner;        
         var awayWinner = data.games[i].game.home.winner;
-        if (data.games[i].game.gameState == "pre") {
-            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameStart + "<br> " + awayTeam + '<div class="awayScore">' + awayScore + "</div><br> " + homeTeam + " " + homeScore + '</div>';
-            $('body').append(fullGameInfo);
-        }else {
-            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + clock + " " + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
+        if (gameState == "pre") {
+//            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameStart + "<br> " + awayTeam + '<div class="awayScore">' + "</div><br> " + homeTeam + " " + '</div>';
+//            $('body').append(fullGameInfo);
+            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameStart + "<br> " + awayTeam + " " + "<br> " + homeTeam + " " + '</div>';
             $('body').append(fullGameInfo);
             // console.log(data.games[i].game.away.names.char6);
+        } else if (gameState == "live") {
+            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + period + " " + clock + " " + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
+            $('body').append(fullGameInfo);
+            // console.log(data.games[i].game.away.names.char6);
+        } else if (gameState == "final" | clock == ":00") {
+            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameState + " " + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
+            $('body').append(fullGameInfo);
+            // console.log(data.games[i].game.away.names.char6);
+        } else if (clock == ":00") {
+            console.log("panic");
         }
         if (homeWinner == true) {
             console.log("home winner");
