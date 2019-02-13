@@ -52,15 +52,21 @@ hr {
 /*    margin-left: auto;*/
     text-align: right;
 }
-
 .winner {
     font-weight: 700;
 }
 .noWrap {
     flex-wrap: nowrap;
 }
-wrap {
+.wrap {
     flex-wrap: wrap;
+}
+.bracketConnect1 {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-left: none;
+    /* float: left; */
 }
 /* <div class="gameStatus">final</div>
 <div class="awayTeam">C CONN</div>

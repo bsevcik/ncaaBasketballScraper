@@ -1,6 +1,7 @@
 var data;
 var arrData;
 var ncaaUrl;
+var updatedAt;
 
 // Found a way around CORS errors, so now I don't need to scrape the node file. Will leave it in here in case I want to switch back
 // scrapeNcaaNode.js grabs the data and stores it on my site
@@ -58,8 +59,10 @@ $.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent(ncaaUrl) + '
 var listGames = setTimeout(function() {
     // var arrData = Object.values(data.games);
     "use strict";
-    $('body').append(data.updated_at);
     console.log("starting listGames() function");
+    window.updatedAt = "<h1> Scores Updated at: <br>" + data.updated_at + " ET</h1>";
+    // window.updatedAt = updatedAt.slice(0, updatedAt.length-3);
+    $('body').append(updatedAt);
     for (var i=0; i < arrData.length; i++) {
         var gameStart = data.games[i].game.startTime;
         var gameState = data.games[i].game.gameState;
@@ -91,7 +94,7 @@ var listGames = setTimeout(function() {
                             homeTeam +
                         '</li>' +
                         '<li class="homeTeamScore">' +
-                            homeScore +
+
                         '</li>' +
                     '</ul>' +
                     '<ul class="awayTeam">' +
@@ -100,7 +103,7 @@ var listGames = setTimeout(function() {
                         '</li>' +
                         '<li class="awayTeamName">' + awayTeam +
                         '</li>' +
-                        '<li class="awayTeamScore">' + awayScore +
+                        '<li class="awayTeamScore">' +
                         '</li>' +
                     '</ul>' +
                 '</div>';
@@ -146,8 +149,8 @@ var listGames = setTimeout(function() {
             var fullGameInfo =
             '<div class="game" id="game' + [i] + '">' +
             '<ul class="gameStatus">' +
-                '<li class="gameState">' + 
-                    gameState.toUpperCase() + 
+                '<li class="gameState">' +
+                    gameState.toUpperCase() +
                 '</li>' +
             '</ul>' +
                 '<ul><li><hr></li></ul>' +
@@ -156,10 +159,10 @@ var listGames = setTimeout(function() {
                 '<li class="homeRank">' +
                     homeRank +
                 '</li>' +
-                '<li class="homeTeamName">' + 
+                '<li class="homeTeamName">' +
                     homeTeam +
                 '</li>' +
-                '<li class="homeTeamScore">' + 
+                '<li class="homeTeamScore">' +
                     homeScore +
                 '</li>' +
             '</ul>' +
@@ -180,8 +183,8 @@ var listGames = setTimeout(function() {
             var fullGameInfo =
             '<div class="game" id="game' + [i] + '">' +
                 '<ul class="gameStatus">' +
-                    '<li class="gameState">' + 
-                        gameState.toUpperCase() + 
+                    '<li class="gameState">' +
+                        gameState.toUpperCase() +
                     '</li>' +
                 '</ul>' +
                     '<ul><li><hr></li></ul>' +
@@ -190,10 +193,10 @@ var listGames = setTimeout(function() {
                     '<li class="homeRank">' +
                         homeRank +
                     '</li>' +
-                    '<li class="homeTeamName">' + 
+                    '<li class="homeTeamName">' +
                         homeTeam +
                     '</li>' +
-                    '<li class="homeTeamScore">' + 
+                    '<li class="homeTeamScore">' +
                         homeScore +
                     '</li>' +
                 '</ul>' +
