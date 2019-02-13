@@ -26,32 +26,33 @@ hr {
     margin: 2px 0 6px 0;
 }
 .gameStatus {
-    /* justify-self: center; */
-    float: right;
-    height: 25px;
-    padding: 2px 0 0 0;
-    margin: -2px 0 0 5px;
-    color: #434445;
-    line-height: 1rem;
-    font: 0.75rem "Geogrotesque","Rockwell",Georgia,Times,"Times New Roman",serif;
-    text-transform: uppercase;
+    height: 16px;
 }
-.homeTeam li, .awayTeam li {
+.homeTeam li, .awayTeam li, .gameStatus li {
 /*    width: 45%;*/
     display: inline-flex;
 }
-.awayTeamName, .homeTeamName {
+.awayRank, .homeRank {
+    width: 16px;
+}
+.tipTime, .gameState {
+    margin-left: 21px;
+    width: 138px;
+}
+.awayTeamName, .homeTeamName, .tipTime {
     justify-content: space-between;
     width: 150px;
     margin-right: auto;
+    padding-left: 5px;
 }
-.awayTeamScore, .homeTeamScore {
+.awayTeamScore, .homeTeamScore, .clock {
     /* align-items: flex-end; */
-    justify-content: flex-end; 
+    /* justify-content: flex-end;  */
     
 /*    margin-left: auto;*/
     text-align: right;
 }
+
 .winner {
     font-weight: 700;
 }

@@ -63,32 +63,152 @@ var listGames = setTimeout(function() {
     for (var i=0; i < arrData.length; i++) {
         var gameStart = data.games[i].game.startTime;
         var gameState = data.games[i].game.gameState;
+        var awayRank = data.games[i].game.away.rank;
         var awayTeam = data.games[i].game.away.names.short;
         var awayScore = data.games[i].game.away.score;
+        var homeRank = data.games[i].game.home.rank;
         var homeTeam = data.games[i].game.home.names.short;
         var homeScore = data.games[i].game.home.score;
-        var period = data.games[i].game.currentPeriod
-        var clock =  data.games[i].game.contestClock
-        var homeWinner = data.games[i].game.home.winner;        
+        var period = data.games[i].game.currentPeriod;
+        var clock =  data.games[i].game.contestClock;
+        var homeWinner = data.games[i].game.home.winner;
         var awayWinner = data.games[i].game.home.winner;
         if (gameState == "pre") {
-//            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameStart + "<br> " + awayTeam + '<div class="awayScore">' + "</div><br> " + homeTeam + " " + '</div>';
-//            $('body').append(fullGameInfo);
-            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameStart + "<br> " + awayTeam + " " + "<br> " + homeTeam + " " + '</div>';
+            var fullGameInfo =
+                '<div class="game" id="game' + [i] + '">' +
+                    '<ul class="gameStatus">' +
+                        '<li class="tipTime">' +
+                            gameStart +
+                        '</li>' +
+                    '</ul>' +
+                        '<ul><li><hr></li></ul>' +
+                    '</ul>' +
+                    '<ul class="homeTeam">' +
+                        '<li class="homeRank">' +
+                            homeRank +
+                        '</li>' +
+                        '<li class="homeTeamName">' +
+                            homeTeam +
+                        '</li>' +
+                        '<li class="homeTeamScore">' +
+                            homeScore +
+                        '</li>' +
+                    '</ul>' +
+                    '<ul class="awayTeam">' +
+                        '<li class="awayRank">' +
+                            awayRank +
+                        '</li>' +
+                        '<li class="awayTeamName">' + awayTeam +
+                        '</li>' +
+                        '<li class="awayTeamScore">' + awayScore +
+                        '</li>' +
+                    '</ul>' +
+                '</div>';
             $('body').append(fullGameInfo);
-            // console.log(data.games[i].game.away.names.char6);
-        } else if (gameState == "live" && clock != ":00") {
-            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + period + " " + clock + " " + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
+        } else if (gameState == "live" && clock != ":00") { 
+// Used for live games that aren't at halftime
+            var fullGameInfo =
+            '<div class="game" id="game' + [i] + '">' +
+            '<ul class="gameStatus">' +
+                '<li class="gameState">' +
+                    period +
+                '</li>' +
+                '<li class="clock">' +
+                    clock +
+                '</li>' +
+            '</ul>' +
+                '<ul><li><hr></li></ul>' +
+            '</ul>' +
+            '<ul class="homeTeam">' +
+                '<li class="homeRank">' +
+                    homeRank +
+                '</li>' +
+                '<li class="homeTeamName">' +
+                    homeTeam +
+                '</li>' +
+                '<li class="homeTeamScore">' +
+                    homeScore +
+                '</li>' +
+            '</ul>' +
+            '<ul class="awayTeam">' +
+                '<li class="awayRank">' +
+                    awayRank +
+                '</li>' +
+                '<li class="awayTeamName">' + awayTeam +
+                '</li>' +
+                '<li class="awayTeamScore">' + awayScore +
+                '</li>' +
+            '</ul>' +
+        '</div>';
             $('body').append(fullGameInfo);
-            // console.log(data.games[i].game.away.names.char6);
         } else if (gameState == "final") {
-            var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameState + " " + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
+            // var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameState + " " + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
+            var fullGameInfo =
+            '<div class="game" id="game' + [i] + '">' +
+            '<ul class="gameStatus">' +
+                '<li class="gameState">' + 
+                    gameState.toUpperCase() + 
+                '</li>' +
+            '</ul>' +
+                '<ul><li><hr></li></ul>' +
+            '</ul>' +
+            '<ul class="homeTeam">' +
+                '<li class="homeRank">' +
+                    homeRank +
+                '</li>' +
+                '<li class="homeTeamName">' + 
+                    homeTeam +
+                '</li>' +
+                '<li class="homeTeamScore">' + 
+                    homeScore +
+                '</li>' +
+            '</ul>' +
+            '<ul class="awayTeam">' +
+                '<li class="awayRank">' +
+                    awayRank +
+                '</li>' +
+                '<li class="awayTeamName">' + awayTeam +
+                '</li>' +
+                '<li class="awayTeamScore">' + awayScore +
+                '</li>' +
+            '</ul>' +
+        '</div>';
             $('body').append(fullGameInfo);
-            // console.log(data.games[i].game.away.names.char6);
         } else if (clock == ":00") {
-           var fullGameInfo = '<div class="game" id="game' + [i] + '">' + period + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
-            $('body').append(fullGameInfo);
-        }
+// Indicates half time or full time, but not a final score
+        //    var fullGameInfo = '<div class="game" id="game' + [i] + '">' + period + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
+            var fullGameInfo =
+            '<div class="game" id="game' + [i] + '">' +
+                '<ul class="gameStatus">' +
+                    '<li class="gameState">' + 
+                        gameState.toUpperCase() + 
+                    '</li>' +
+                '</ul>' +
+                    '<ul><li><hr></li></ul>' +
+                '</ul>' +
+                '<ul class="homeTeam">' +
+                    '<li class="homeRank">' +
+                        homeRank +
+                    '</li>' +
+                    '<li class="homeTeamName">' + 
+                        homeTeam +
+                    '</li>' +
+                    '<li class="homeTeamScore">' + 
+                        homeScore +
+                    '</li>' +
+                '</ul>' +
+                '<ul class="awayTeam">' +
+                    '<li class="awayRank">' +
+                        awayRank +
+                    '</li>' +
+                    '<li class="awayTeamName">' + awayTeam +
+                    '</li>' +
+                    '<li class="awayTeamScore">' + awayScore +
+                    '</li>' +
+                '</ul>' +
+            '</div>';
+        $('body').append(fullGameInfo);
+    }
         if (homeWinner == true) {
             console.log("home winner");
         } else {
@@ -99,36 +219,42 @@ var listGames = setTimeout(function() {
 listGames;
 
 /*
-//This is going to be the well styled part
-var fullGameInfo = 
-    '<div class="game" id="game' + [i] + '">
-        <ul>
-            <li class="tipTime">'
-
-
-<div class="game" id="game1">
-    <ul>
-        <li>
-            07:00PM ET
-        </li>
-        <li>
-            <hr>
-        </li>
-    </ul>
-    <ul class="awayTeam">
-        <li class="awayTeamName">
-            Norfolk State
-        </li>
-        <li class="awayTeamScore">
-            0
-        </li>
-    </ul>
-    <ul class="homeTeam">
-        <li class="homeTeamName">
-            Florida A&amp;M
-        </li>
-        <li class="homeTeamScore">
-            0
-        </li>
-    </ul>
-</div>*/
+//This is the template for game info with styling
+            var fullGameInfo =
+                '<div class="game" id="game' + [i] + '">' +
+                    '<ul class="gameStatus">' +
+                        '<li class="tipTime">' + 
+                            gameStart + 
+                        '</li>' +
+                        '<li class="gameState">' + 
+                            gameState.toUpperCase() + 
+                        '</li>' +
+                        '<li class="clock">' + 
+                            clock + 
+                        '</li>' +
+                    '</ul>' +
+                        '<ul><li><hr></li></ul>' +
+                    '</ul>' +
+                    '<ul class="homeTeam">' +
+                        '<li class="homeRank">' +
+                            homeRank +
+                        '</li>' +
+                        '<li class="homeTeamName">' + 
+                            homeTeam +
+                        '</li>' +
+                        '<li class="homeTeamScore">' + 
+                            homeScore +
+                        '</li>' +
+                    '</ul>' +
+                    '<ul class="awayTeam">' +
+                        '<li class="awayRank">' +
+                            awayRank +
+                        '</li>' +
+                        '<li class="awayTeamName">' + awayTeam +
+                        '</li>' +
+                        '<li class="awayTeamScore">' + awayScore +
+                        '</li>' +
+                    '</ul>' +
+                '</div>';
+            $('body').append(fullGameInfo);
+*/
