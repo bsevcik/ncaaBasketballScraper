@@ -34,6 +34,7 @@ function retrieveScoreUrl() {
     return ncaaUrl;
 }
 retrieveScoreUrl();
+
 // Bypassed CORS error, can get live score updates direct from NCAA using the script below
 $.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent(ncaaUrl) + '&callback=?',
     function (data) {
@@ -43,6 +44,15 @@ $.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent(ncaaUrl) + '
     console.log(arrData);    
     return data;
 });
+
+// Trying to set it to reload while any game is still live. Want to run it every 5 seconds
+//setTimeout(function() {
+//    for (var i = 0; i < arrData.length; i++) {
+//        while (data.games[i].game.gameState == "live") {
+//        console.log(data.games[i].game.gameState);
+//    
+//        } 
+//}}, 700);
 
 // It takes a bit for the $.getJSON() to finish, so I pause 800ms before trying to output the data
 var listGames = setTimeout(function() {
@@ -87,3 +97,38 @@ var listGames = setTimeout(function() {
     }
 }, 800);
 listGames;
+
+/*
+//This is going to be the well styled part
+var fullGameInfo = 
+    '<div class="game" id="game' + [i] + '">
+        <ul>
+            <li class="tipTime">'
+
+
+<div class="game" id="game1">
+    <ul>
+        <li>
+            07:00PM ET
+        </li>
+        <li>
+            <hr>
+        </li>
+    </ul>
+    <ul class="awayTeam">
+        <li class="awayTeamName">
+            Norfolk State
+        </li>
+        <li class="awayTeamScore">
+            0
+        </li>
+    </ul>
+    <ul class="homeTeam">
+        <li class="homeTeamName">
+            Florida A&amp;M
+        </li>
+        <li class="homeTeamScore">
+            0
+        </li>
+    </ul>
+</div>*/
