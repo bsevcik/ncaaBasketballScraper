@@ -67,16 +67,17 @@ var listGames = setTimeout(function() {
             var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameStart + "<br> " + awayTeam + " " + "<br> " + homeTeam + " " + '</div>';
             $('body').append(fullGameInfo);
             // console.log(data.games[i].game.away.names.char6);
-        } else if (gameState == "live") {
+        } else if (gameState == "live" && clock != ":00") {
             var fullGameInfo = '<div class="game" id="game' + [i] + '">' + period + " " + clock + " " + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
             $('body').append(fullGameInfo);
             // console.log(data.games[i].game.away.names.char6);
-        } else if (gameState == "final" | clock == ":00") {
+        } else if (gameState == "final") {
             var fullGameInfo = '<div class="game" id="game' + [i] + '">' + gameState + " " + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
             $('body').append(fullGameInfo);
             // console.log(data.games[i].game.away.names.char6);
         } else if (clock == ":00") {
-            console.log("panic");
+           var fullGameInfo = '<div class="game" id="game' + [i] + '">' + period + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
+            $('body').append(fullGameInfo);
         }
         if (homeWinner == true) {
             console.log("home winner");
