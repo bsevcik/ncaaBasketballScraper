@@ -108,7 +108,7 @@ var listGames = setTimeout(function() {
                     '</ul>' +
                 '</div>';
             $('body').append(fullGameInfo);
-        } else if (gameState == "live" && clock != ":00") { 
+        } else if (gameState == "live" && period != "HALF") { 
 // Used for live games that aren't at halftime
             var fullGameInfo =
             '<div class="game" id="game' + [i] + '">' +
@@ -177,14 +177,14 @@ var listGames = setTimeout(function() {
             '</ul>' +
         '</div>';
             $('body').append(fullGameInfo);
-        } else if (clock == ":00") {
+        } else if (period == "HALF") {
 // Indicates half time or full time, but not a final score
         //    var fullGameInfo = '<div class="game" id="game' + [i] + '">' + period + "<br> " + awayTeam + " " + awayScore + "<br> " + homeTeam + " " + homeScore + '</div>';
             var fullGameInfo =
             '<div class="game" id="game' + [i] + '">' +
                 '<ul class="gameStatus">' +
                     '<li class="gameState">' +
-                        gameState.toUpperCase() +
+                        period.toUpperCase() +
                     '</li>' +
                 '</ul>' +
                     '<ul><li><hr></li></ul>' +
@@ -211,6 +211,8 @@ var listGames = setTimeout(function() {
                 '</ul>' +
             '</div>';
         $('body').append(fullGameInfo);
+    } else {
+        console.log(homeTeam);
     }
         if (homeWinner == true) {
             console.log("home winner");
